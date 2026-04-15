@@ -1,0 +1,332 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13399,        322]
+NotebookOptionsPosition[     13044,        308]
+NotebookOutlinePosition[     13440,        324]
+CellTagsIndexPosition[     13397,        321]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"a", " ", "=", " ", "1"}], ";"}], " ", "\n", 
+   RowBox[{
+    RowBox[{"b", " ", "=", " ", "1"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Phi0", " ", "=", " ", "1"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"nMax", " ", "=", " ", "20"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"mMax", " ", "=", " ", "20"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"xMax", " ", "=", " ", "1"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"dx", " ", "=", " ", "0.04"}], ";"}], "\n", "\n", "\n", 
+   RowBox[{
+    RowBox[{"outputFile", " ", "=", " ", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", " ", 
+        "\"\<potencial_rectangular.mp4\>\""}], "}"}], "]"}]}], ";"}], "\n", 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PhiInit", "[", 
+      RowBox[{"y_", ",", " ", "z_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"Phi0", "*", "y", "*", 
+      RowBox[{"(", 
+       RowBox[{"a", " ", "-", " ", "y"}], ")"}], "*", "z", "*", 
+      RowBox[{"(", 
+       RowBox[{"b", " ", "-", " ", "z"}], ")"}]}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cn", "[", 
+      RowBox[{"n_", ",", " ", "m_"}], "]"}], " ", ":=", " ", "\n", "  ", 
+     RowBox[{
+      RowBox[{"Cn", "[", 
+       RowBox[{"n", ",", " ", "m"}], "]"}], " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"4", "/", 
+         RowBox[{"(", 
+          RowBox[{"a", " ", "b"}], ")"}]}], ")"}], "*", "\n", "    ", 
+       RowBox[{"NIntegrate", "[", "\n", "      ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PhiInit", "[", 
+           RowBox[{"y", ",", " ", "z"}], "]"}], "*", "\n", "      ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"n", " ", "Pi", " ", 
+            RowBox[{"y", "/", "a"}]}], "]"}], "*", "\n", "      ", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"m", " ", "Pi", " ", 
+            RowBox[{"z", "/", "b"}]}], "]"}]}], ",", "\n", "      ", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", " ", "0", ",", " ", "a"}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", " ", "0", ",", " ", "b"}], "}"}], ",", "\n", 
+         "      ", 
+         RowBox[{"Method", " ", "->", " ", "\"\<GlobalAdaptive\>\""}], ",", 
+         "\n", "      ", 
+         RowBox[{"MaxRecursion", " ", "->", " ", "8"}], ",", "\n", "      ", 
+         RowBox[{"AccuracyGoal", " ", "->", " ", "6"}]}], "\n", "    ", 
+        "]"}]}]}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Phi", "[", 
+      RowBox[{"x_", ",", " ", "y_", ",", " ", "z_"}], "]"}], " ", ":=", " ", 
+     "\n", "  ", 
+     RowBox[{"Sum", "[", "\n", "    ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Cn", "[", 
+         RowBox[{"n", ",", " ", "m"}], "]"}], "*", "\n", "    ", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "Pi"}], "*", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"n", "/", "a"}], ")"}], "^", "2"}], " ", "+", " ", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"m", "/", "b"}], ")"}], "^", "2"}]}], "]"}], "*", "x"}],
+          "]"}], "*", "\n", "    ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"n", " ", "Pi", " ", 
+          RowBox[{"y", "/", "a"}]}], "]"}], "*", "\n", "    ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"m", " ", "Pi", " ", 
+          RowBox[{"z", "/", "b"}]}], "]"}]}], ",", "\n", "    ", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", " ", "1", ",", " ", "nMax"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", " ", "1", ",", " ", "mMax"}], "}"}]}], "\n", "  ", 
+      "]"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{
+    RowBox[{
+    "Print", "[", "\"\<Calculando normalizaci\[OAcute]n global...\>\"", "]"}],
+     ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"PhiMax", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"NMaximize", "[", "\n", "   ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Phi", "[", 
+           RowBox[{"0", ",", " ", "y", ",", " ", "z"}], "]"}], ",", " ", 
+          RowBox[{
+           RowBox[{"0", " ", "<=", " ", "y", " ", "<=", " ", "a"}], " ", "&&",
+            " ", 
+           RowBox[{"0", " ", "<=", " ", "z", " ", "<=", " ", "b"}]}]}], "}"}],
+         ",", "\n", "   ", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", " ", "z"}], "}"}]}], "\n", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"colorScheme", " ", "=", " ", "\"\<ThermometerColors\>\""}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<Generando frames...\>\"", "]"}], ";"}], "\n", 
+   "\n", 
+   RowBox[{
+    RowBox[{"frames", " ", "=", " ", 
+     RowBox[{"Monitor", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"Table", "[", "\n", "    ", "\n", "    ", 
+        RowBox[{
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"{", "\n", "      ", 
+            RowBox[{"{", "\n", "       ", "\n", "       ", 
+             RowBox[{
+              RowBox[{"Plot3D", "[", "\n", "        ", 
+               RowBox[{
+                RowBox[{"Evaluate", "[", 
+                 RowBox[{"Phi", "[", 
+                  RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "]"}], "]"}], 
+                ",", "\n", "        ", 
+                RowBox[{"{", 
+                 RowBox[{"y", ",", " ", "0", ",", " ", "a"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"z", ",", " ", "0", ",", " ", "b"}], "}"}], ",", 
+                "\n", "        ", "\n", "        ", 
+                RowBox[{"PlotRange", " ", "->", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", " ", "PhiMax"}], "}"}]}], ",", "\n", 
+                "        ", 
+                RowBox[{"PlotPoints", " ", "->", " ", "60"}], ",", "\n", 
+                "        ", 
+                RowBox[{"MaxRecursion", " ", "->", " ", "2"}], ",", "\n", 
+                "        ", "\n", "        ", 
+                RowBox[{"ColorFunction", " ", "->", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"ColorData", "[", "colorScheme", "]"}], "[", 
+                    RowBox[{"#3", "/", "PhiMax"}], "]"}], " ", "&"}], ")"}]}],
+                 ",", "\n", "        ", 
+                RowBox[{"ColorFunctionScaling", " ", "->", " ", "False"}], 
+                ",", "\n", "        ", "\n", "        ", 
+                RowBox[{"Mesh", " ", "->", " ", "None"}], ",", "\n", 
+                "        ", 
+                RowBox[{"Lighting", " ", "->", " ", "\"\<Neutral\>\""}], ",", 
+                "\n", "        ", "\n", "        ", 
+                RowBox[{"AxesLabel", " ", "->", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"#", ",", " ", "14", ",", " ", "Bold"}], "]"}], 
+                    " ", "&"}], " ", "/@", " ", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    "\"\<y\>\"", ",", " ", "\"\<z\>\"", ",", " ", 
+                    "\"\<\[Phi]\>\""}], "}"}]}], ")"}]}], ",", "\n", 
+                "        ", 
+                RowBox[{"Boxed", " ", "->", " ", "False"}], ",", "\n", 
+                "        ", "\n", "        ", 
+                RowBox[{"PlotLabel", " ", "->", " ", 
+                 RowBox[{"Style", "[", "\n", "          ", 
+                  RowBox[{
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Superficie 3D   |   x = \>\"", ",", " ", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"x", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", " ", "2"}], "}"}]}], "]"}]}], "}"}], 
+                    "]"}], ",", "\n", "          ", "14", ",", " ", "Bold"}], 
+                  "\n", "        ", "]"}]}], ",", "\n", "        ", "\n", 
+                "        ", 
+                RowBox[{"ImageSize", " ", "->", " ", "400"}]}], "\n", 
+               "       ", "]"}], ",", "\n", "       ", "\n", "       ", "\n", 
+              "       ", 
+              RowBox[{"DensityPlot", "[", "\n", "        ", 
+               RowBox[{
+                RowBox[{"Evaluate", "[", 
+                 RowBox[{"Phi", "[", 
+                  RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "]"}], "]"}], 
+                ",", "\n", "        ", 
+                RowBox[{"{", 
+                 RowBox[{"y", ",", " ", "0", ",", " ", "a"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"z", ",", " ", "0", ",", " ", "b"}], "}"}], ",", 
+                "\n", "        ", "\n", "        ", 
+                RowBox[{"PlotPoints", " ", "->", " ", "60"}], ",", "\n", 
+                "        ", 
+                RowBox[{"MaxRecursion", " ", "->", " ", "2"}], ",", "\n", 
+                "        ", "\n", "        ", 
+                RowBox[{"ColorFunction", " ", "->", " ", "colorScheme"}], ",",
+                 "\n", "        ", 
+                RowBox[{"PlotRange", " ", "->", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", " ", "PhiMax"}], "}"}]}], ",", "\n", 
+                "        ", "\n", "        ", 
+                RowBox[{"FrameLabel", " ", "->", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"#", ",", " ", "14", ",", " ", "Bold"}], "]"}], 
+                    " ", "&"}], " ", "/@", " ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<y\>\"", ",", " ", "\"\<z\>\""}], "}"}]}], 
+                  ")"}]}], ",", "\n", "        ", "\n", "        ", 
+                RowBox[{"PlotLabel", " ", "->", " ", 
+                 RowBox[{"Style", "[", "\n", "          ", 
+                  RowBox[{
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Mapa de calor   |   x = \>\"", ",", " ", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"x", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", " ", "2"}], "}"}]}], "]"}]}], "}"}], 
+                    "]"}], ",", "\n", "          ", "14", ",", " ", "Bold"}], 
+                  "\n", "        ", "]"}]}], ",", "\n", "        ", "\n", 
+                "        ", 
+                RowBox[{"ImageSize", " ", "->", " ", "400"}]}], "\n", 
+               "       ", "]"}]}], "\n", "      ", "}"}], "\n", "     ", 
+            "}"}], ",", "\n", "     ", 
+           RowBox[{"Spacings", " ", "->", " ", 
+            RowBox[{"{", 
+             RowBox[{"2", ",", " ", "2"}], "}"}]}]}], "\n", "    ", "]"}], 
+         ",", "\n", "    ", "\n", "    ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", " ", "0", ",", " ", "xMax", ",", " ", "dx"}], 
+          "}"}]}], "\n", "    ", "\n", "   ", "]"}], ",", "\n", "   ", "\n", 
+       "   ", 
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\n", "     ", 
+         RowBox[{"\"\<Generando frame con x = \>\"", ",", "\n", "     ", 
+          RowBox[{"NumberForm", "[", 
+           RowBox[{"x", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"3", ",", " ", "2"}], "}"}]}], "]"}]}], "\n", "   ", 
+         "}"}], "]"}]}], "\n", "]"}]}], ";"}], "\n", "\n", "\n", "\n", 
+   RowBox[{
+    RowBox[{"anim", " ", "=", " ", 
+     RowBox[{"ListAnimate", "[", "\n", "   ", 
+      RowBox[{"frames", ",", "\n", "   ", 
+       RowBox[{"DefaultDuration", " ", "->", " ", "10"}], ",", "\n", "   ", 
+       RowBox[{"AnimationRepetitions", " ", "->", " ", "Infinity"}]}], "\n", 
+      "]"}]}], ";"}], "\n", "\n", "anim", "\n", "\n", "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<Exportando video...\>\"", "]"}], ";"}], "\n", 
+   "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", "\n", "  ", 
+     RowBox[{"outputFile", ",", "\n", "  ", "frames", ",", "\n", "  ", 
+      RowBox[{"\"\<FrameRate\>\"", " ", "->", " ", "30"}]}], "\n", "]"}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Video guardado en: \>\"", ",", " ", "outputFile"}], "]"}], 
+    ";"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.9852081213403587`*^9},ExpressionUUID->"7e2df065-89a0-4d25-9b19-\
+19ac2ad686e8"]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"14.1 para Mac OS X ARM (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"36277e34-637d-4fed-a00a-473af9f21267"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 12486, 286, 2653, "Code",ExpressionUUID->"7e2df065-89a0-4d25-9b19-19ac2ad686e8"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
