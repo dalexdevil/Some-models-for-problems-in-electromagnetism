@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project presents the numerical solution and visualization of the electric potential (\Phi(x,y,z)) inside an infinite rectangular tube by solving Laplace’s equation using the method of separation of variables.
+This project presents the numerical solution and visualization of the electric potential $$\Phi(x,y,z)$$ inside an infinite rectangular tube by solving Laplace’s equation using the method of separation of variables.
 
 The code is implemented in Mathematica and generates an animation that shows how the potential evolves spatially along the longitudinal axis of the tube.
 
